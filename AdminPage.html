@@ -2,23 +2,26 @@
 <html>
 <head>
 	<title>Quote 4 Me Register</title>
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="QuoteForMeCSS.css">
+	<link href="https://fonts.googleapis.com/css?family=Concert+One|Righteous" rel="stylesheet">
 
 	<!--This is the image in top left tab -->
-	<link rel="icon" href="768px-Instagram_simple_icon.svg.png">
+	<link rel="icon" href="peace.png">
 </head>
 <body>
-	<button id="backHomeFromAdminId" onclick="backHome()">Back Home</button>
+	
 	<!-- Admin gets lists of quotes to approve. If they aprove then add to list of quotes and remove from admins list. then refresh admin list-->
 	<p>
-		<h1>Admin Quotes to approve</h1>
+		<h1>Admin Quotes to Approve!</h1>
 		<div class="aminQuotesToApprove" >
 			<textarea id="AdminQuotesToApprove" rows="4" cols="50" >This is the quotes for the admin to approve
 			</textarea>
 		</div>
+		<br>
 		<button id="approveQuoteId" onclick=" ">Approved</button>
 		<button id="declineQuoteId" onclick=" ">Declined</button>
+		<button id="backHomeFromAdminId" onclick="backHome()">Back Home</button>
 	</p>
 
 
