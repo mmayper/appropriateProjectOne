@@ -1,0 +1,143 @@
+/*
+Order
+- Type
+- Alphabetical
+
+*/
+html{
+	height: 100%;
+	overflow-y: scroll;
+
+}
+
+body {
+	
+	text-align: 					center;
+	font-size: 						150%;
+	font-family: 'Concert One';
+	background-image: url("movingBackground.gif");
+	/*background-image: 				linear-gradient(#48c6ef,#6f86d6);*/
+	background-size: 				cover;
+	background-repeat: 				no-repeat;
+	min-height: 					100%;
+	color: 							white;
+
+
+}
+
+
+
+
+}
+
+/*.backgroundOfWebsite {
+	background-color: 			lightgray;
+}
+*/
+.insertQuoteTextArea {
+
+}
+
+header {
+	text-align: 					center;
+	font-size: 						200%;
+	padding-bottom: 				20px;
+}
+
+button{
+	background-color: 				white;
+	border-color: 					#48c6ef;
+	color: 							#48c6ef;	
+	font-family: 					'Concert One';
+	height: 						50px;
+	width: 							100px;
+
+}
+
+button:hover{
+	background-color: 				#ffef00;
+}
+
+.editUserInfoTable{
+	text-align: 					left;
+}
+
+.logInTable
+{
+	text-align: 					left;
+}
+
+.forgotPasswordTable{
+	text-align: 					left;
+}
+#searchResultsId{
+	width: 							50%;
+}
+.searchResultsId{
+
+}
+#updateOfTheDayId
+{
+	font-family: 					'Dancing Script';
+	font-size: 						250%;
+	color: 							#ffef00;
+}
+#loadAdminPageId{
+	height: 						30px;
+	width: 							70px;
+}
+#adminButtonId{
+	width: 							auto;
+}
+#searchAreaId
+{
+	min-width: 						100%;
+}
+
+/*This is code we were working with*/
+/*#searchTermBar{
+	min-width: 						100%;
+}
+#searchTermId{
+	width:  						75%;
+}
+#searchTermButtonId{
+	width:                          100%;
+}*/
+
+@media only screen and (max-width: 1024px)
+
+{
+	body {
+	
+	font-size: 						100%;
+	background-image: 				linear-gradient(#09203f,#537895);
+	background-size: 				cover;
+	background-repeat: 				no-repeat;
+	min-height: 					100%;
+	color: 							white;
+
+	}
+
+	#userQuoteId{
+		width: 						70%;
+	}
+
+	button{
+	border-color: 					#09203f;
+	color: 							#09203f;	
+	}
+
+	.homePageButtonsRow{
+		width: 					100%;
+		height: 				35%;			
+
+	}
+
+	#loadAdminPageId
+	{
+		width: 					100%;
+		height: 				35%;	
+	}
+	
+}
