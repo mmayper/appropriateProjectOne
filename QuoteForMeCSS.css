@@ -70,6 +70,16 @@ button:hover{
 .forgotPasswordTable{
 	text-align: 					left;
 }
+
+table, th, td{
+	border:              1px solid white;
+	padding: 						  2%;
+	text-align: 				  center;
+}
+.adminTable{
+	border-collapse: 		 collapse;			
+
+}
 #searchResultsId{
 	width: 							50%;
 }

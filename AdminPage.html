@@ -14,13 +14,32 @@
 	<!-- Admin gets lists of quotes to approve. If they aprove then add to list of quotes and remove from admins list. then refresh admin list-->
 	<p>
 		<h1>Admin Quotes to Approve!</h1>
+		<table class= "adminTable" align="center" cellspacing="15">
+			<tr>
+				<th>User First Name</th>
+				<th>User Last Name</th>
+				<th>User Email</th>
+				<th>Accept</th>
+				<th>Decline</th>
+			</tr>
+			<tr>
+				<td>John</td>
+				<td>Smith</td>
+				<td>john.smith@yahoo.com</td>
+				<td><button>accept</button></td>
+				<td><button>decline</button></td>
+
+			</tr>
+			</table>
 		<div class="aminQuotesToApprove" >
-			<textarea id="AdminQuotesToApprove" rows="4" cols="50" >This is the quotes for the admin to approve
-			</textarea>
+			<!-- <textarea id="AdminQuotesToApprove" rows="4" cols="50" >This is the quotes for the admin to approve
+			</textarea> -->
 		</div>
 		<br>
-		<button id="approveQuoteId" onclick=" ">Approved</button>
-		<button id="declineQuoteId" onclick=" ">Declined</button>
+
+		
+		<!-- <button id="approveQuoteId" onclick=" ">Approved</button>
+		<button id="declineQuoteId" onclick=" ">Declined</button> -->
 		<button id="backHomeFromAdminId" onclick="backHome()">Back Home</button>
 	</p>
 
