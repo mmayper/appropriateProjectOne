@@ -2,8 +2,6 @@
 //Alphabetical order
 //Alphabetical order
 
-
-
 //Log the user
 	//if correct take to home page
 	//else clear log in information
@@ -58,12 +56,35 @@ function logoutUser() {
 }
 
 function registerUser() {
-	//Takes to the register page
-
+    //submit form with info
+    document.getElementById("regisFormId").submit()
 	// take all information and store to database
 
+    //clear old information
+
 	// take to home page
-	window.location.replace("HomePage.html");
+
+}
+
+
+function CreateAccount(fName, lName, email, password, genre1, genre2) {
+    var webMethod = "AccountServices.asmx/RequestAccount";
+    var parameters = "{\"firstName\":\"" + encodeURI(fName) + "\",\"lastName\":\"" + encodeURI(lName) + "\",\"email\":\"" + encodeURI(email) + "\",\"password\":\"" + encodeURI(password) + "\",\"firstFaveGenre\":\"" + encodeURI(genre1) + "\",\"secondFaveGenre\":\"" + encodeURI(genre2)+"\"}";
+
+    $.ajax({
+        type: "POST",
+        url: webMethod,
+        data: parameters,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (msg) {
+            alert("Thank you for registering!");
+            window.location.replace("HomePage.html");
+        },
+        error: function (e) {
+            alert("Something went wrong please try again later");
+        }
+    });
 }
 
 function submitUserEditInfo() {

@@ -84,12 +84,16 @@
     <Content Include="Global.asax" />
     <Content Include="HomePage.html" />
     <Content Include="index.html" />
+    <Content Include="Jazz_Logo.png" />
     <Content Include="logInPage.html" />
+    <Content Include="movingBackground.gif" />
     <Content Include="QuoteForMeCSS.css" />
     <Content Include="QuoteForMeJavaScript.js" />
     <Content Include="RegisterUser.html" />
     <Content Include="UploadQuote.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
