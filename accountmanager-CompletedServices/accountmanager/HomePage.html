@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quote 4 Me</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="QuoteForMeCSS.css">
+	<link href="https://fonts.googleapis.com/css?family=Concert+One|Righteous" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+
+	<!--This is the image in top left tab -->
+	<link rel="icon" href="peace.png">
+</head>
+<!---
+	This is the home page of the website
+	- Shows the user a quote of the day
+	- Has search feature for the user
+	- log the user out
+	- Link css
+	- Link Javascript
+		- Logout
+		- Forgot Password
+		- Search
+-->
+
+<header><strong>Quote 4 Me!</strong></header>
+
+<body>
+	
+	<div class="backgroundOfWebsite">
+
+	<div class="homePageButtons">
+		<table align="center" cellspacing="5" class="homePageButtonsTable">
+			<tr class="homePageButtonsRow">
+				<td><button id="loadAddQuotePageId" onclick="loadAddQuotePage()">Add Your Own Quote</button></td>
+				<td><button id="editUserInformationId" onclick="editUserInformation()">Edit Information</button></td>
+				<td><button id="logOutOfHomePageButtonId" onclick="logoutUser()">Log Out</button></td>
+			</tr>
+		</table>
+		<!-- Log the user out and take them to the logInPage -->
+		<table align="center" cellspacing="15" class="homePageButtonsTable">
+			<tr>
+				<td id="adminButtonId"><button id="loadAdminPageId" onclick="loadAdminPage()">Admin</button></td>
+			</tr>
+		</table>
+	</div>
+		
+		
+		<p>Quote of the day:</p>
+		<p id="updateOfTheDayId" class="quoteForTheDay">"Be the change that you wish to see in the world"</p>
+		<p id="authorOfTheDayId">Mahatma Gandhi</p>
+		<p id="quoteRatingId">4.5/5</p>
+		
+
+		<div>
+			<table align="center" cellspacing="5" id="searchTermBar">
+				<tr>
+					<td id="searchTermId"><input class="searchTerm" type="text" name="" placeholder="Search"></td>
+					<td id="searchTermButtonId"><button id="submitSearchButtonId" onclick="SubmitSearch()">Search</button></td>
+				</tr>
+			</table>
+
+			<table align="center" id="searchAreaId">
+				<tr>
+					<td><textarea id="searchResultsId" rows="4" cols="50" >This is the results of the search
+			</textarea></td>
+				</tr>
+			</table>
+		</div>
+
+
+	</div>
+
+	<!-- Keep all Javadcript Files at the bottom of the page -->
+	<script type="text/javascript" src= "QuoteForMeJavaScript.js"></script>
+</body>
+</html>

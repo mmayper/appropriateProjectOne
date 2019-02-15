@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quote 4 Me Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="QuoteForMeCSS.css">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One|Righteous" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="QuoteForMeJavaScript.js"></script>
+
+    <!--This is the image in top left tab -->
+    <link rel="icon" href="peace.png">
+
+</head>
+<body>
+    <!-- Information from user to register -->
+    <h1>Welcome to Quote 4 Me!</h1>
+    <p>We are here to motivate and inspire you each and everyday through a few simple words</p>
+    <p>First thing, go ahead and fill out your profile information below and we will get you all set up!</p>
+    <br>
+    <!--<form onsubmit="CreateAccount($('#newLogonId').val(), $('#newLogonPassword').val(), $('#newLogonFName').val(), $('#newLogonLName').val(), $('#newLogonEmail').val()); return false;"> -->
+    <form id="regisFormId" onsubmit="CreateAccount($('#regFirstNameId').val(), $('#regLastNameId').val(), $('#regEmailId').val(), $('#regPasswordId').val(), $('#RegGenre1Id').val(), $('#RegGenre2Id').val());">
+        <!--return false;-->
+        <div class="field">
+            <table align="center" cellspacing="15" class="editUserInfoTable">
+                <tr>
+                    <div class="field">
+                        <td>First Name:</td>
+                        <td><input class="field" type="text" name="regFirstName" id="regFirstNameId" placeholder="First Name"></td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="field">
+                        <td>Last Name:</td>
+                        <td><input class="field" type="text" name="regLastName" id="regLastNameId" placeholder="Last Name"></td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="field">
+                        <td>Email:</td>
+                        <td><input class="field" type="text" name="regEmail" id="regEmailId" placeholder="Email"></td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="field">
+                        <td>Password:</td>
+                        <td><input class="field" type="Password" name="regPassword" id="regPasswordId" placeholder="Password"></td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="field">
+                        <td>First Favorite Genre:</td>
+                        <td>
+                            <select name="RegGenre1" id="RegGenre1Id">
+                                <option value="None">None</option>
+                                <option value="Influential">Influential</option>
+                                <option value="Inspirational">Inspirational</option>
+                                <option value="Informational">Informational</option>
+                                <option value="Poignant">Poignant</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="field">
+                        <td>
+                            Second Favorite Genre:
+                        </td>
+                        <td>
+                            <select name="RegGenre1" id="RegGenre2Id">
+                                <option value="None">None</option>
+                                <option value="Influential">Influential</option>
+                                <option value="Inspirational">Inspirational</option>
+                                <option value="Informational">Informational</option>
+                                <option value="Poignant">Poignant</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </td>
+                    </div>
+                </tr>
+            </table>
+        </div>
+
+        <!-- The user can cancel or submit -->
+        <div class="actions">
+            <button type="button" id="logOutButtonId" onclick="logoutUser()">Cancel</button>
+            <button type="button" id="registerUserId" onclick="registerUser()">Enter</button>
+        </div>
+
+    </form>
+
+
+
+
+
+   
+</body>
+</html>
