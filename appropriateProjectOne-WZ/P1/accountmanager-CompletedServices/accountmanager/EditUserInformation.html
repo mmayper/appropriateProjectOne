@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quote 4 Me Edit Information</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="QuoteForMeCSS.css">
+	<link href="https://fonts.googleapis.com/css?family=Concert+One|Righteous" rel="stylesheet">
+
+
+	<!--This is the image in top left tab -->
+	<link rel="icon" href="peace.png">
+</head>
+<body>
+	<!-- Information from user to register -->
+	<h1>Edit Your Quote 4 Me Info!</h1>
+	<table align="center" class="editUserInfoTable" cellspacing="15">
+		<tr>
+			<td>First Name:</td>
+			<td><input type="text" name="editFirstName" id="editFirstNameId" placeholder="First Name"></td>
+		</tr>
+		<tr>
+			<td>Last Name:</td>
+			<td><input type="text" name="editLastName" id="editLastNameId" placeholder="Last Name"></td>
+		</tr>
+		<tr>
+			<td>Email:</td>
+			<td><input type="text" name="editEmail" id="editEmailId" placeholder="Email"></td>
+		</tr>
+		<tr>
+			<td>Password:</td>
+			<td><input type="Password" name="editPassword" id="editPasswordId" placeholder="Password"></td>
+		</tr>
+		<tr>
+			<td>First Favorite Genre:</td>
+			<td>
+				<select name="editGenre1" id="editGenre1Id">
+					<option value="None">None</option>
+					<option value="Influential">Influential</option>
+					<option value="Inspirational">Inspirational</option>
+					<option value="Informational">Informational</option>
+					<option value="Poignant">Poignant</option>
+					<option value="Other">Other</option>
+		</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Second Favorite Genre:</td>
+			<td>
+				<select name="editGenre1" id="editGenre2Id">
+					<option value="None">None</option>
+					<option value="Influential">Influential</option>
+					<option value="Inspirational">Inspirational</option>
+					<option value="Informational">Informational</option>
+					<option value="Poignant">Poignant</option>
+					<option value="Other">Other</option>
+		</select>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<!-- The user can cancel or submit -->
+	<button id="backHomeFromEditInfoId" onclick="backHome()">Cancel</button>
+	<button id="updateUserInfoId" onclick="submitUserEditInfo()">Submit</button>
+	
+
+
+
+	<script type="text/javascript" src= "QuoteForMeJavaScript.js"></script>
+</body>
+</html>
