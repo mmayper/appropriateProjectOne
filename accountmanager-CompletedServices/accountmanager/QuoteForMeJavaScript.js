@@ -48,7 +48,25 @@ function submitUserEditInfo() {
                     //test if email is unique
                     if (testemail.includes("@gmail.com") || testemail.includes("@asu.edu") || testemail.includes("@yahoo.com") || testemail.includes("@hotmail.com")) {
                         window.alert('all fields work');
-                        //test email contains . and @
+                        //edit users information in sql
+
+                        var webMethod = "AccountServices.asmx/UpdateAccount";
+                        var parameters = "{\"firstName\":\"" + encodeURI(fName) + "\",\"lastName\":\"" + encodeURI(lName) + "\",\"email\":\"" + encodeURI(testemail) + "\",\"password\":\"" + encodeURI(regpassword) + "\",\"firstFaveGenre\":\"" + encodeURI(genre1) + "\",\"secondFaveGenre\":\"" + encodeURI(genre2) + "\"}";
+
+                        $.ajax({
+                            type: "POST",
+                            url: webMethod,
+                            data: parameters,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (msg) {
+                                //takes the user back home
+                                window.location.replace("HomePage.html");
+                            },
+                            error: function (e) {
+                                alert("boo...");
+                            }
+                        });
                     }
                     else {
                         alert("We only accept emails from: Yahoo, gmain, asu, and hotmail");
@@ -70,27 +88,6 @@ function submitUserEditInfo() {
             document.getElementById('regPasswordId').value = ""
         }
     }
-
-    //edit users information in sql
-
-    var webMethod = "AccountServices.asmx/UpdateAccount";
-    var parameters = "{\"firstName\":\"" + encodeURI(fName) + "\",\"lastName\":\"" + encodeURI(lName) + "\",\"email\":\"" + encodeURI(testemail) + "\",\"password\":\"" + encodeURI(regpassword) + "\",\"firstFaveGenre\":\"" + encodeURI(genre1) + "\",\"secondFaveGenre\":\"" + encodeURI(genre2) + "\"}";
-
-    $.ajax({
-        type: "POST",
-        url: webMethod,
-        data: parameters,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (msg) {
-            //takes the user back home
-            window.location.replace("HomePage.html");
-        },
-        error: function (e) {
-            alert("boo...");
-        }
-    });
-
 
 }
 
@@ -288,19 +285,12 @@ function logUserIn() {
 //New code post 2/15
 //HERE'S AN EXAMPLE OF AN AJAX CALL WITH JQUERY!
 function LogOn(userEmail, pass) {
-    //the url of the webservice we will be talking to
     var webMethod = "AccountServices.asmx/LogOn";
-    //the parameters we will pass the service (in json format because curly braces)
-    //note we encode the values for transmission over the web.  All the \'s are just
-    //because we want to wrap our keynames and values in double quotes so we have to
-    //escape the double quotes (because the overall string we're creating is in double quotes!)
     var parameters = "{\"email\":\"" + encodeURI(userEmail) + "\",\"password\":\"" + encodeURI(pass) + "\"}";
 
     //jQuery ajax method
     $.ajax({
-        //post is more secure than get, and allows
-        //us to send big data if we want.  really just
-        //depends on the way the service you're talking to is set up, though
+
         type: "POST",
         //the url is set to the string we created above
         url: webMethod,
@@ -309,8 +299,7 @@ function LogOn(userEmail, pass) {
         //these next two key/value pairs say we intend to talk in JSON format
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        //jQuery sends the data and asynchronously waits for a response.  when it
-        //gets a response, it calls the function mapped to the success key here
+
         success: function (LogonInfo) {
             console.log(LogonInfo);
             //the server response is in the msg object passed in to the function here
@@ -337,11 +326,6 @@ function LogOn(userEmail, pass) {
             }
         },
         error: function (e) {
-            //if something goes wrong in the mechanics of delivering the
-            //message to the server or the server processing that message,
-            //then this function mapped to the error key is executed rather
-            //than the one mapped to the success key.  This is just a garbage
-            //alert becaue I'm lazy
             alert("boo...");
         }
     });
@@ -367,4 +351,74 @@ function logoutUser() {
                 alert("boo...");
             }
         });
+}
+
+function uploadQuote() {
+    // take all input
+    quote = document.getElementById('userQuoteId').value
+    authorFirstName = document.getElementById('afirstName').value
+    authorLastName = document.getElementById('alastName').value
+    genre1 = document.getElementById('genre1').value
+    genre2 = document.getElementById('genre2').value
+    genre3 = document.getElementById('genre3').value
+    rating = document.getElementById('initialRatingId').value
+
+
+    // test to see if quote text or author's name are missing
+    if (quote == "" || authorLastName == "" || authorFirstName == "") {
+        alert("Please be sure to enter both the quote and its author. If there is no author, simply write \"unknown\".");
+    }
+    else {
+
+        var webMethod = "AccountServices.asmx/UploadTheirQuote";
+
+        var parameters = "{\"quote\":\"" + encodeURI(quote) + "\",\"firstName\":\"" + encodeURI(authorFirstName) + "\",\"LastName\":\"" + encodeURI(authorLastName) + "\",\"rating\":\"" + encodeURI(rating) + "\",\"genre1\":\"" + encodeURI(genre1) + "\",\"genre2\":\"" + encodeURI(genre2) + "\",\"genre3\":\"" + encodeURI(genre3) + "\"}";
+        //jQuery ajax method
+        $.ajax({
+            type: "POST",
+            //the url is set to the string we created above
+            url: webMethod,
+            //same with the data
+            data: parameters,
+            //these next two key/value pairs say we intend to talk in JSON format
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            //jQuery sends the data and asynchronously waits for a response.  when it
+            //gets a response, it calls the function mapped to the success key here
+            success: function (msg) {
+                //the server response is in the msg object passed in to the function here
+                //since our logon web method simply returns a true/false, that value is mapped
+                //to a generic property of the server response called d (I assume short for data
+                //but honestly I don't know...)
+                if (msg.d) {
+                    //server replied true, so show the accounts panel
+                    // window.location.replace("HomePage.html")
+                    alert("Thank you for your quote");
+                    document.getElementById('userQuoteId').value =""
+                    document.getElementById('afirstName').value = ""
+                    document.getElementById('alastName').value = ""
+                    document.getElementById('genre1').value = "None"
+                    document.getElementById('genre2').value = "None"
+                    document.getElementById('genre3').value = "None"
+                    document.getElementById('initialRatingId').value =""
+                }
+                else {
+                    //server replied false, so let the user know
+                    //the logon failed
+                    alert("logon failed");
+                }
+            },
+            error: function (e) {
+                //if something goes wrong in the mechanics of delivering the
+                //message to the server or the server processing that message,
+                //then this function mapped to the error key is executed rather
+                //than the one mapped to the success key.  This is just a garbage
+                //alert becaue I'm lazy
+                alert("boo...");
+            }
+        });
+    }
+
+
+
 }

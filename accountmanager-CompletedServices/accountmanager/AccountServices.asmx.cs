@@ -22,6 +22,57 @@ namespace accountmanager
     [System.Web.Script.Services.ScriptService]
     public class AccountServices : System.Web.Services.WebService
     {
+        [WebMethod(EnableSession = true)]
+        public bool UploadTheirQuote(string quote, string firstName, string LastName, string rating, string genre1, string genre2, string genre3)
+        {
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            //string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+            //string sqlSelect = "insert into account(firstName, lastName, email, password, firstFaveGenre, secondFaveGenre, activeAccount, adminAbility) " +
+            //"values(@fnameValue, @lnameValue, @emailValue, @passwordValue, @genre1Value, @genre2Value, 0, 0); SELECT LAST_INSERT_ID();";
+            string sqlSelect = "insert into quotes2(quoteText, qFirstName, qLastName, rating, genre1, genre2, genre3, approved, totalPoints, numRaters) " +
+                "values(@quoteVal, @firstNameVal, @lastNameVal, @ratingVal, @genre1Val, @genre2Val, @genre3Val, '1', @ratingVal, '1');";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            sqlCommand.Parameters.AddWithValue("@quoteVal", HttpUtility.UrlDecode(quote));
+            sqlCommand.Parameters.AddWithValue("@firstNameVal", HttpUtility.UrlDecode(firstName));
+            sqlCommand.Parameters.AddWithValue("@lastNameVal", HttpUtility.UrlDecode(LastName));
+            sqlCommand.Parameters.AddWithValue("@ratingVal", HttpUtility.UrlDecode(rating));
+            sqlCommand.Parameters.AddWithValue("@genre1Val", HttpUtility.UrlDecode(genre1));
+            sqlCommand.Parameters.AddWithValue("@genre2Val", HttpUtility.UrlDecode(genre2));
+            sqlCommand.Parameters.AddWithValue("@genre3Val", HttpUtility.UrlDecode(genre3));
+
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            DataTable sqlDt = new DataTable();
+            sqlDa.Fill(sqlDt);
+            return true;
+
+            //sqlConnection.Open();
+            ////we're using a try/catch so that if the query errors out we can handle it gracefully
+            ////by closing the connection and moving on
+            //try
+            //{
+            //    //sqlCommand.ExecuteNonQuery();
+            //    //int accountID = Convert.ToInt32(sqlCommand.ExecuteScalar());
+            //    //here, you could use this accountID for additional queries regarding
+            //    //the requested account.  Really this is just an example to show you
+            //    //a query where you get the primary key of the inserted row back from
+            //    //the database!
+
+            //    sqlConnection.Close();
+            //    return true;
+            //}
+            //catch (Exception e)
+            //{
+
+            //}
+            //sqlConnection.Close();
+            //return false;
+
+
+        }
 
         [WebMethod(EnableSession = true)]
         public bool LogOff()
@@ -399,5 +450,8 @@ namespace accountmanager
 
         }
 
+
+        
     }
 }
+

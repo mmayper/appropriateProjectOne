@@ -13,6 +13,11 @@ namespace accountmanager
         public bool active;
     }
 
+    public class UploadedTheQuote
+    {
+        public bool successfulUpload;
+    }
+
 
 
 
