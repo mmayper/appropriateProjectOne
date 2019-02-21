@@ -11,53 +11,49 @@
     <link rel="icon" href="peace.png">
 </head>
 <body>
-	<!--- 
-	User logs in through the use of their email and password. 
-	If correct take to main page.
+    <!---
+    User logs in through the use of their email and password.
+    If correct take to main page.
 
-	NEED to
-	1. link to Javascript
-		- Log In
-		- Forgot Password
+    NEED to
+    1. link to Javascript
+        - Log In
+        - Forgot Password
 
-	2. Link to CSS which incrorporated responsive look
-		- responsive
-		- coloring
-		- fonts
+    2. Link to CSS which incrorporated responsive look
+        - responsive
+        - coloring
+        - fonts
 
-	---> 
-	<div id="logInDiv">
-		<h1>Welcome to Quote 4 Me!</h1>
-		<h3>Please log In!</h3>
-		<table align="center" class="logInTable" cellspacing="15">
-			<tr>
-				<td>Email:</td>
-				<!---This line made in reference to 430 project ---> 
-				<td><input  id="inputEmailLogInId" type="text" name="" placeholder="Email"></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<!---This line made in reference to 430 project --->
-				<td><input  id="inputPasswordLogInId" type="password" name="" placeholder="Password"></td>
-			</tr>
-		</table>
-		<br>
-		
+    --->
+    <div id="logInDivId">
+        <h1>Welcome to Quote 4 Me!</h1>
+        <h3>Please log In!</h3>
+        <table align="center" class="logInTable" cellspacing="15">
+            <tr>
+                <td>Email:</td>
+                <!---This line made in reference to 430 project --->
+                <td><input id="inputEmailLogInId" type="text" name="" placeholder="Email"></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <!---This line made in reference to 430 project --->
+                <td><input id="inputPasswordLogInId" type="password" name="" placeholder="Password"></td>
+            </tr>
+        </table>
+        <br>
 
-		<!-- user either logs in or goes to forgot password page -->
-		<table align="center">
-			<tr>
-				<td><button id="logInButtonId" onclick="logUserIn()">Log In</button></td>
-				<td><button id="loadregisterUserPageId" onclick="loadregisterUserPage()">Register</button></td>
-				<td><button id="forgotPasswordButtonId" onclick="loadforgotPassword()">Forgot Password</button></td>
-			</tr>
-		</table>
-		
-		
-		
-	</div>
 
-	<!-- Keep all Javadcript Files at the bottom of the page -->
-	<script type="text/javascript" src= "QuoteForMeJavaScript.js"></script>
+        <!-- user either logs in or goes to forgot password page -->
+        <table align="center">
+            <tr>
+                <td><button id="logInButtonId" onclick="logUserIn()">Log In</button></td>
+                <td><button id="loadregisterUserPageId" onclick="loadregisterUserPage()">Register</button></td>
+                <td><button id="forgotPasswordButtonId" onclick="loadforgotPassword()">Forgot Password</button></td>
+            </tr>
+        </table>
+    </div>
+    <!-- Keep all Javadcript Files at the bottom of the page -->
+    <script type="text/javascript" src="QuoteForMeJavaScript.js"></script>
 </body>
 </html>

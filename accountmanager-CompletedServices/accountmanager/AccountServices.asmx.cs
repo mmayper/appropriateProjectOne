@@ -144,47 +144,36 @@ namespace accountmanager
 
         //EXAMPLE OF AN UPDATE QUERY WITH PARAMS PASSED IN
         [WebMethod(EnableSession = true)]
-        public void UpdateAccount(string id, string uid, string pass, string firstName, string lastName, string email)
+        public void UpdateAccount(string firstName, string lastName, string email, string password, string firstFaveGenre, string secondFaveGenre)
         {
-            //WRAPPING THE WHOLE THING IN AN IF STATEMENT TO CHECK IF THEY ARE AN ADMIN!
-            if (Convert.ToInt32(Session["admin"]) == 1)
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            //this is a simple update, with parameters to pass in values
+            string sqlSelect = "update account set firstname=@firstName, lastname=@lastName, " +
+                "email=@email, password=@password, firstFaveGenre=@firstFaveGenre, secondFaveGenre=@secondFaveGenre where accountID=@accountID";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            sqlCommand.Parameters.AddWithValue("@accountID", HttpUtility.UrlDecode(Session["accountID"].ToString()));
+            sqlCommand.Parameters.AddWithValue("@firstName", HttpUtility.UrlDecode(firstName));
+            sqlCommand.Parameters.AddWithValue("@lastName", HttpUtility.UrlDecode(lastName));
+            sqlCommand.Parameters.AddWithValue("@email", HttpUtility.UrlDecode(email));
+            sqlCommand.Parameters.AddWithValue("@password", HttpUtility.UrlDecode(password));
+            sqlCommand.Parameters.AddWithValue("@firstFaveGenre", HttpUtility.UrlDecode(firstFaveGenre));
+            sqlCommand.Parameters.AddWithValue("@secondFaveGenre", HttpUtility.UrlDecode(secondFaveGenre));
+
+            sqlConnection.Open();
+            //we're using a try/catch so that if the query errors out we can handle it gracefully
+            //by closing the connection and moving on
+            try
             {
-                string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
-                //this is a simple update, with parameters to pass in values
-                string sqlSelect = "update account set userid=@uidValue, pass=@passValue, firstname=@fnameValue, lastname=@lnameValue, " +
-                    "email=@emailValue where id=@idValue";
-
-                MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
-                MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
-
-                sqlCommand.Parameters.AddWithValue("@uidValue", HttpUtility.UrlDecode(uid));
-                sqlCommand.Parameters.AddWithValue("@passValue", HttpUtility.UrlDecode(pass));
-                sqlCommand.Parameters.AddWithValue("@fnameValue", HttpUtility.UrlDecode(firstName));
-                sqlCommand.Parameters.AddWithValue("@lnameValue", HttpUtility.UrlDecode(lastName));
-                sqlCommand.Parameters.AddWithValue("@emailValue", HttpUtility.UrlDecode(email));
-                sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(id));
-
-                sqlConnection.Open();
-                //we're using a try/catch so that if the query errors out we can handle it gracefully
-                //by closing the connection and moving on
-                try
-                {
-                    sqlCommand.ExecuteNonQuery();
-                }
-                catch (Exception e)
-                {
-                }
-                sqlConnection.Close();
+                sqlCommand.ExecuteNonQuery();
             }
+            catch (Exception e)
+            {
+            }
+            sqlConnection.Close();
         }
-
-
-
-
-
-
-
-
 
         //EXAMPLE OF A SELECT, AND RETURNING "COMPLEX" DATA TYPES
         [WebMethod(EnableSession = true)]
@@ -337,10 +326,12 @@ namespace accountmanager
             return emailAccounts.ToArray();
         }
 
+
+
         //New as of 2/15
         //EXAMPLE OF A SIMPLE SELECT QUERY (PARAMETERS PASSED IN FROM CLIENT)
         [WebMethod(EnableSession = true)] //NOTICE: gotta enable session on each individual method
-        public bool LogOn(string email, string password)
+        public LogonInfo LogOn(string email, string password)
         {
             //we return this flag to tell them if they logged in or not
             bool success = false;
@@ -371,27 +362,42 @@ namespace accountmanager
             sqlDa.Fill(sqlDt);
             //check to see if any rows were returned.  If they were, it means it's 
             //a legit account
+            LogonInfo toReturn = new LogonInfo();
+            toReturn.successfulLogon = false;
             if (sqlDt.Rows.Count > 0)
             {
                 //if we found an account, store the id and admin status in the session
                 //so we can check those values later on other method calls to see if they 
                 //are 1) logged in at all, and 2) and admin or not
                 Session["accountID"] = sqlDt.Rows[0]["accountID"];
-                Session["adminAbility"] = sqlDt.Rows[0]["adminAbility"];
-                Session["activeAccount"] = sqlDt.Rows[0]["activeAccount"];
-                Session["adminAbility"] = sqlDt.Rows[0]["adminAbility"];
+                //Session["AdminAbility"] = sqlDt.Rows[0]["AdminAbility"];
+                //Session["activeAccount"] = sqlDt.Rows[0]["activeAccount"];
+                //Session["adminAbility"] = sqlDt.Rows[0]["adminAbility"];
                 success = true;
+                toReturn.successfulLogon = true;
+                if (sqlDt.Rows[0]["AdminAbility"].ToString() == "True")
+                {
+                    toReturn.admin = true;
+                }
+                else
+                {
+                    toReturn.admin = false;
+                }
+
+                if (sqlDt.Rows[0]["activeAccount"].ToString() == "True")
+                {
+                    toReturn.active = true;
+                }
+                else
+                {
+                    toReturn.active = false;
+                }
+                toReturn.accountID = sqlDt.Rows[0]["accountID"].ToString();
             }
             //return the result!
-            return success;
+            return toReturn;
+
         }
-
-
-
-
-
-
-
 
     }
 }
