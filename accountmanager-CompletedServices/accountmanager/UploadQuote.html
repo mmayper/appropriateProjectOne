@@ -1,91 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Upload Quote </title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="QuoteForMeCSS.css">
-	<link href="https://fonts.googleapis.com/css?family=Concert+One|Righteous" rel="stylesheet">
+    <title>Upload Quote </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="QuoteForMeCSS.css">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One|Righteous" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-	<!--This is the image in top left tab -->
-	<link rel="icon" href="peace.png">
+
+    <!--This is the image in top left tab -->
+    <link rel="icon" href="peace.png">
 </head>
 <body>
-	<!-- Information from user to register -->
-	<h1>Tell Us Your Amazing Quote!</h1>
-	<p>Please insert quotes without quotations! Also, please put the author in the input below!</p>
-	<textarea class="insertQuoteTextArea" placeholder="Your Quote Here :)" rows="4" cols="50" id="userQuoteId"></textarea>
-	
-	
-	<br>
-	<p>
-		Who wrote this marvelous quote?
-		<br>
-		Author's Name: <input type="text" name="AuthorName" id="authorsNameId">
-	</p>	
-	<p>
-		Please tell us which Genres you believe this quote fits under!
-		<br>
-		Genre 1:
-		<select name="genre1" id="genre1">
-			<option value="None">None</option>
-			<option value="Influential">Influential</option>
-			<option value="Inspirational">Inspirational</option>
-			<option value="Informational">Informational</option>
-			<option value="Poignant">Poignant</option>
-			<option value="Other">Other</option>
-		</select>
-		<br>
+    <!-- Information from user to register -->
+    <h1>Tell Us Your Amazing Quote!</h1>
+    <p>Please insert quotes without quotations! Also, please put the author in the input below!</p>
+    <textarea class="insertQuoteTextArea" placeholder="Your Quote Here :)" rows="4" cols="50" id="userQuoteId"></textarea>
 
 
-		Genre 2:
-		<select name="genre2" id="genre2">
-			<option value="None">None</option>
-			<option value="Influential">Influential</option>
-			<option value="Inspirational">Inspirational</option>
-			<option value="Informational">Informational</option>
-			<option value="Poignant">Poignant</option>
-			<option value="Other">Other</option>
-		</select>
-		<br>
+    <br>
+    <p>
+        Who wrote this marvelous quote?
+        <br>
+        Author's First Name: <input type="text" name="AuthorFirstName" id="afirstName">
+        Author's Last Name: <input type="text" name="AuthorLastName" id="alastName">
+    </p>
+    <p>
+        Please tell us which Genres you believe this quote fits under!
+        <br>
+        Genre 1:
+        <select name="genre1" id="genre1">
+            <option value="None">None</option>
+            <option value="Influential">Influential</option>
+            <option value="Inspirational">Inspirational</option>
+            <option value="Informational">Informational</option>
+            <option value="Poignant">Poignant</option>
+            <option value="Other">Other</option>
+        </select>
+        <br>
 
 
-		Genre 3:
-		<select name="genre3" id="genre3">
-			<option value="None">None</option>
-			<option value="Influential">Influential</option>
-			<option value="Inspirational">Inspirational</option>
-			<option value="Informational">Informational</option>
-			<option value="Poignant">Poignant</option>
-			<option value="Other">Other</option>
-		</select>
-
-		<br>
-		<br>
-	</p>
-	<p>
-		How would you rate this quote out of 5?
-		<br>
-		Rating:
-		<select name="initialRating" id="initialRatingId">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-		</select>
-	</p>
+        Genre 2:
+        <select name="genre2" id="genre2">
+            <option value="None">None</option>
+            <option value="Influential">Influential</option>
+            <option value="Inspirational">Inspirational</option>
+            <option value="Informational">Informational</option>
+            <option value="Poignant">Poignant</option>
+            <option value="Other">Other</option>
+        </select>
+        <br>
 
 
+        Genre 3:
+        <select name="genre3" id="genre3">
+            <option value="None">None</option>
+            <option value="Influential">Influential</option>
+            <option value="Inspirational">Inspirational</option>
+            <option value="Informational">Informational</option>
+            <option value="Poignant">Poignant</option>
+            <option value="Other">Other</option>
+        </select>
 
-
-	<!-- The user can cancel or submit -->
-	<br>
-	<button id="backHomeFromUploadButtonId" onclick="backHome()">Cancel</button>
-	<button id="submitAddQuoteId" onclick="submitAddQuote()">Submit Quote</button>
-	
+        <br>
+        <br>
+    </p>
+    <p>
+        How would you rate this quote out of 5?
+        <br>
+        Rating:
+        <select name="initialRating" id="initialRatingId">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </p>
 
 
 
-	<script type="text/javascript" src= "QuoteForMeJavaScript.js"></script>
+
+    <!-- The user can cancel or submit -->
+    <br>
+    <button id="backHomeFromUploadButtonId" onclick="backHome()">Cancel</button>
+    <button id="submitAddQuoteId" onclick="uploadQuote()">Submit Quote</button>
+
+
+
+
+    <script type="text/javascript" src="QuoteForMeJavaScript.js"></script>
 </body>
 </html>

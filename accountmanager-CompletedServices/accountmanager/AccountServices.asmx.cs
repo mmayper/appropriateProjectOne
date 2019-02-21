@@ -399,5 +399,32 @@ namespace accountmanager
 
         }
 
+
+        [WebMethod(EnableSession = true)] // William's work
+        public bool uploadQuote(string quote, string firstName, string lastName, string rating, string genre1, string genre2, string genre3)
+        {
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+            string sqlSelect = "insert into quotes2(quoteText, qFirstName, qLastName, rating, genre1, genre2, genre3, approved, totalPoints, numRaters) " +
+                "values(@quoteVal, @firstNameVal, @lastNameVal, @ratingVal, @genre1Val, @genre2Val, @genre3Val, 1, @ratingVal, 1);";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            sqlCommand.Parameters.AddWithValue("@quoteVal", HttpUtility.UrlDecode(quote));
+            sqlCommand.Parameters.AddWithValue("@firstNameVal", HttpUtility.UrlDecode(firstName));
+            sqlCommand.Parameters.AddWithValue("@lastNameVal", HttpUtility.UrlDecode(lastName));
+            sqlCommand.Parameters.AddWithValue("@ratingVal", HttpUtility.UrlDecode(rating));
+            sqlCommand.Parameters.AddWithValue("@genre1Val", HttpUtility.UrlDecode(genre1));
+            sqlCommand.Parameters.AddWithValue("@genre2Val", HttpUtility.UrlDecode(genre2));
+            sqlCommand.Parameters.AddWithValue("@genre3Val", HttpUtility.UrlDecode(genre3));
+
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            DataTable sqlDt = new DataTable();
+            sqlDa.Fill(sqlDt);
+            return true;
+            
+        }
     }
 }
+
